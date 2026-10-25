@@ -1,0 +1,504 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Grade 2 Math Exam</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@500;700;800&family=Cairo:wght@500;700;800&display=swap">
+<style>
+/* Layout: one question per screen in a centered card; chunky tactile buttons; graphs drawn as bright dot-columns */
+:root{
+  --bg:#E6F4FF; --card:#FFFFFF; --ink:#1B2A4A; --soft:#5B6B8C; --line:#C9DCF0; --cell:#F5FAFF;
+  --blue:#2F7BEA; --blue-d:#1F5CBA; --pink:#FF5C8A; --yellow:#FFC83D; --green:#22B573; --green-bg:#DDF6EA; --red:#F0475B; --red-bg:#FFE3E7; --purple:#8A5CF5;
+  --c1:#FF5C8A; --c2:#2F7BEA; --c3:#FFB703; --c4:#22B573; --c5:#8A5CF5;
+  --display:'Baloo 2','Trebuchet MS',system-ui,sans-serif; --body:'Nunito','Trebuchet MS',system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#101C3A; --card:#1B2B54; --ink:#F1F5FF; --soft:#A9B8DB; --line:#33477D; --cell:#162448;
+  --blue:#5B9BFF; --blue-d:#3E7EE0; --green-bg:#12392D; --red-bg:#47202B; --green:#3BD18C; --red:#FF7587; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#101C3A; --card:#1B2B54; --ink:#F1F5FF; --soft:#A9B8DB; --line:#33477D; --cell:#162448;
+  --blue:#5B9BFF; --blue-d:#3E7EE0; --green-bg:#12392D; --red-bg:#47202B; --green:#3BD18C; --red:#FF7587; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:600;font-size:18px;line-height:1.45;
+  padding-block:20px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.1;text-wrap:balance}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--yellow);outline-offset:2px}
+
+.btn{background:var(--blue);color:#fff;border:0;border-radius:18px;padding:12px 28px;font-family:var(--display);font-weight:800;font-size:1.3rem;
+  box-shadow:0 5px 0 var(--blue-d);transition:transform .08s,box-shadow .08s}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--blue-d)}
+.btn:disabled{opacity:.45;cursor:not-allowed;box-shadow:0 5px 0 var(--blue-d)}
+.btn.go{background:var(--green);box-shadow:0 5px 0 #138a55}
+.btn.go:active{box-shadow:0 1px 0 #138a55}
+
+/* start + result */
+.hero{background:var(--card);border-radius:28px;padding:28px 22px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px;box-shadow:0 6px 0 var(--line)}
+.hero h1{font-size:clamp(2rem,7vw,3rem);color:var(--blue)}
+.hero p{margin:0;color:var(--soft);max-width:34ch}
+.demo{display:flex;gap:8px;align-items:flex-end;height:84px;padding:0 6px}
+.demo i{width:30px;border-radius:12px 12px 6px 6px;display:block;animation:rise .7s ease-out both}
+@keyframes rise{from{height:0}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.chip{background:var(--cell);border:2px solid var(--line);border-radius:999px;padding:3px 12px;font-size:.85rem}
+
+/* top bar */
+.top{display:flex;align-items:center;gap:12px}
+.bar{flex:1;height:16px;background:var(--card);border-radius:99px;border:2px solid var(--line);overflow:hidden}
+.bar b{display:block;height:100%;background:linear-gradient(90deg,var(--pink),var(--yellow),var(--green));border-radius:99px;transition:width .35s}
+.pill{background:var(--card);border:2px solid var(--line);border-radius:99px;padding:2px 14px;font-family:var(--display);font-weight:800;white-space:nowrap}
+
+/* question card */
+.q{background:var(--card);border-radius:28px;padding:20px;box-shadow:0 6px 0 var(--line);display:flex;flex-direction:column;gap:16px;min-width:0}
+.meta{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--soft)}
+.tag{background:var(--cell);border-radius:99px;padding:2px 12px;border:2px solid var(--line)}
+.stars-lv{color:var(--yellow);letter-spacing:2px}
+.prompt{font-size:1.25rem;font-weight:800;margin:0}
+.visual{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;min-width:0}
+
+.graph{margin:0;flex:1 1 280px;max-width:100%;min-width:0;background:var(--cell);border:2px solid var(--line);border-radius:18px;padding:10px 8px 6px}
+.graph figcaption{font-family:var(--display);font-weight:800;text-align:center;line-height:1.15}
+.graph figcaption small{display:block;font-family:var(--body);font-weight:700;color:var(--soft);font-size:.8rem}
+.graph svg{display:block;width:100%;height:auto;margin:auto}
+.graph text{fill:var(--ink);font-family:var(--body);font-weight:800}
+.gcell{fill:var(--card);stroke:var(--line)}
+
+.scatter{display:flex;flex-wrap:wrap;gap:6px 10px;justify-content:center;background:var(--cell);border:2px dashed var(--line);border-radius:18px;padding:12px;font-size:2rem;line-height:1.1;width:100%}
+.scatter span{display:inline-block}
+
+table.chart{border-collapse:separate;border-spacing:0;width:100%;max-width:560px;margin:auto;border:2px solid var(--line);border-radius:14px;overflow:hidden;text-align:center;background:var(--cell)}
+table.chart caption{font-family:var(--display);font-weight:800;padding:4px}
+table.chart th,table.chart td{padding:8px 4px;border-top:2px solid var(--line);border-left:2px solid var(--line)}
+table.chart tr>*:first-child{border-left:0;background:var(--card)}
+table.chart thead th{background:var(--card);border-top:0}
+.tbl-wrap{overflow-x:auto;width:100%}
+
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.opt{display:flex;align-items:center;gap:10px;text-align:left;background:var(--card);border:3px solid var(--line);border-radius:16px;padding:10px 14px;font-weight:800;box-shadow:0 4px 0 var(--line);min-height:56px}
+.opt .k{flex:none;width:32px;height:32px;border-radius:50%;background:var(--cell);border:2px solid var(--line);display:grid;place-items:center;font-family:var(--display);font-size:.95rem}
+.opt[aria-pressed="true"]{border-color:var(--blue);background:var(--cell)}
+.opt[aria-pressed="true"] .k{background:var(--blue);border-color:var(--blue);color:#fff}
+.opt.right{border-color:var(--green);background:var(--green-bg)}
+.opt.right .k{background:var(--green);border-color:var(--green);color:#fff}
+.opt.wrong{border-color:var(--red);background:var(--red-bg)}
+.opt.wrong .k{background:var(--red);border-color:var(--red);color:#fff}
+.opt:disabled{cursor:default}
+.tf{grid-template-columns:1fr 1fr}
+
+.num{font-family:var(--display);font-weight:800;font-size:1.6rem;width:5.2rem;text-align:center;border:3px solid var(--line);border-radius:14px;padding:6px;background:var(--card);color:var(--ink)}
+.num:focus{border-color:var(--blue)}
+.num.right{border-color:var(--green);background:var(--green-bg)}
+.num.wrong{border-color:var(--red);background:var(--red-bg)}
+.fillrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.unit{color:var(--soft);font-weight:800}
+
+.fb{border-radius:18px;padding:12px 16px;display:flex;flex-direction:column;gap:2px}
+.fb.ok{background:var(--green-bg);border:2px solid var(--green)}
+.fb.no{background:var(--red-bg);border:2px solid var(--red)}
+.fb h3{font-size:1.35rem}
+.fb.ok h3{color:var(--green)} .fb.no h3{color:var(--red)}
+.fb p{margin:0;font-size:.95rem}
+.act{display:flex;justify-content:flex-end}
+
+/* results */
+.score{font-family:var(--display);font-weight:800;font-size:clamp(3rem,14vw,5rem);line-height:1;color:var(--blue)}
+.stars{font-size:3rem;letter-spacing:6px;color:var(--yellow);line-height:1}
+.stars .off{color:var(--line)}
+.panel{background:var(--card);border-radius:28px;padding:20px;box-shadow:0 6px 0 var(--line);display:flex;flex-direction:column;gap:12px}
+.topic{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;align-items:center}
+.topic .tb{grid-column:1/-1;height:14px;background:var(--cell);border-radius:99px;border:2px solid var(--line);overflow:hidden}
+.topic .tb b{display:block;height:100%;border-radius:99px}
+.rev{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;padding:10px 0;border-top:2px solid var(--line);font-size:.95rem}
+.rev .n{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#fff;font-family:var(--display);font-weight:800}
+.rev .n.ok{background:var(--green)} .rev .n.no{background:var(--red)}
+.rev p{margin:0}
+.rev .ans{color:var(--soft);font-size:.85rem}
+.rev .ans b{color:var(--ink)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* vertical sums + chapter picker + parent report */
+table.vert{border-collapse:collapse;margin:auto;font-family:var(--display);font-weight:800;font-size:1.9rem;text-align:center;background:var(--cell);border:2px solid var(--line);border-radius:14px;overflow:hidden}
+table.vert th{font-family:var(--body);font-size:.8rem;color:var(--soft);padding:4px 14px;background:var(--card)}
+table.vert td{width:3.2rem;height:2.6rem;padding:0 8px}
+table.vert td:first-child{width:2rem;color:var(--blue)}
+table.vert tr.last td{border-bottom:4px solid var(--ink)}
+.chs{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;color:var(--soft);font-size:.9rem}
+.mini{background:var(--cell);border:2px solid var(--line);border-radius:12px;padding:4px 14px;font-weight:800;box-shadow:0 3px 0 var(--line)}
+.mini:active{transform:translateY(2px);box-shadow:0 1px 0 var(--line)}
+.chips.left{justify-content:flex-start}
+.soft{color:var(--soft);margin:0}
+.parent h4{font-family:var(--display);font-size:1.15rem;margin:6px 0 0}
+.parent h4.good{color:var(--green)} .parent h4.warn{color:var(--red)}
+.parent .big{margin:0;font-size:1.2rem}
+.plist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.plist li{display:flex;justify-content:space-between;gap:10px;background:var(--green-bg);border:2px solid var(--green);border-radius:12px;padding:6px 12px}
+.adv{background:var(--red-bg);border:2px solid var(--red);border-radius:14px;padding:10px 14px;display:flex;flex-direction:column;gap:4px}
+.adv h4{display:flex;justify-content:space-between;gap:10px;color:var(--ink);margin:0}
+.adv p{margin:0;font-size:.95rem}
+.parent h4.watch{color:var(--soft)} .adv.mild{background:var(--cell);border-color:var(--line)} .note{font-size:.85rem}
+
+.langs{display:flex;flex-wrap:wrap;gap:10px}
+.lang{flex:1 1 220px;background:var(--cell);border:3px solid var(--line);border-radius:16px;padding:10px 14px;font-weight:800;font-size:1.05rem;box-shadow:0 4px 0 var(--line)}
+.lang[aria-pressed="true"]{background:var(--blue);border-color:var(--blue-d);color:#fff;box-shadow:0 4px 0 var(--blue-d)}
+.lang:first-child{font-family:'Cairo',var(--body)}
+.rep[hidden]{display:none!important}
+.rep{display:flex;flex-direction:column;gap:10px}
+.rep h3{font-size:1.4rem}
+.ar,.ar h3,.ar h4,.ar .chip{font-family:'Cairo',var(--body)}
+.ar{line-height:1.7}
+</style>
+
+<div class="wrap" id="app"></div>
+
+<script>
+/* ---------- DATA ---------- */
+var PETS=[{n:'Dog',e:'🐶',v:7},{n:'Cat',e:'🐱',v:9},{n:'Rabbit',e:'🐰',v:4},{n:'Fish',e:'🐟',v:7},{n:'Bird',e:'🐦',v:3}];
+var TRAVEL=[{n:'Train',e:'🚆',v:8},{n:'Bus',e:'🚌',v:5},{n:'Ship',e:'🚢',v:3},{n:'Plane',e:'✈️',v:6}];
+var FRUIT1=[{n:'Bananas',e:'🍌',v:7},{n:'Apples',e:'🍎',v:3},{n:'Oranges',e:'🍊',v:6},{n:'Strawberries',e:'🍓',v:9},{n:'Grapes',e:'🍇',v:5}];
+var FRUIT2=[{n:'Bananas',e:'🍌',v:5},{n:'Apples',e:'🍎',v:8},{n:'Oranges',e:'🍊',v:6},{n:'Strawberries',e:'🍓',v:6},{n:'Grapes',e:'🍇',v:7}];
+var SPORT1=[{n:'Football',e:'⚽',v:8},{n:'Basketball',e:'🏀',v:4},{n:'Handball',e:'🤾',v:6},{n:'Volleyball',e:'🏐',v:9},{n:'Tennis',e:'🎾',v:2}];
+var SPORT2=[{n:'Football',e:'⚽',v:5},{n:'Basketball',e:'🏀',v:7},{n:'Handball',e:'🤾',v:6},{n:'Volleyball',e:'🏐',v:4},{n:'Tennis',e:'🎾',v:8}];
+var TOYS=[{n:'Kite',e:'🪁',v:5},{n:'Ball',e:'⚽',v:4},{n:'Car',e:'🚗',v:3},{n:'Teddy',e:'🧸',v:6}];
+var FRUITPIC=[{n:'Apples',e:'🍎',v:5},{n:'Bananas',e:'🍌',v:3},{n:'Oranges',e:'🍊',v:6},{n:'Grapes',e:'🍇',v:4}];
+
+var COLORS=['var(--c1)','var(--c2)','var(--c3)','var(--c4)','var(--c5)'];
+var T_MAKE='Making graphs',T_RG='Reading graphs',T_RC='Reading charts',T_OP='Add and subtract words',T_CMP='Comparing graphs';
+var T_READ='Reading graphs and charts';
+var T_ADD1='Adding 2-digit numbers',T_ADD2='Adding with regrouping',T_COMM='Swapping addends';
+var T_SUB1='Subtracting 2-digit numbers',T_SUB2='Subtracting with regrouping',T_REL='Checking with addition';
+var TOPICS=[
+ {n:T_MAKE,ch:1,tip:'Practice making a graph: put one circle on the graph for each picture, then count each column. Check that the number of circles matches the number of pictures.'},
+ {n:T_READ,ch:1,tip:'The tallest column is the most and the shortest is the least. A chart shows exact numbers: add for "in all" and subtract for "how many more". Ask your child to read a graph aloud and answer 3 questions about it.'},
+ {n:T_CMP,ch:1,tip:'Look at both graphs one item at a time. Write down both numbers, then add to find the total or subtract to find the difference.'},
+ {n:T_ADD1,ch:2,tip:'Write Ones under Ones and Tens under Tens. Add the Ones first, then the Tens. When adding a 1-digit number, put it in the Ones place.'},
+ {n:T_ADD2,ch:2,tip:'When the Ones add up to 10 or more, keep the ones and carry 1 ten to the Tens place. Use tens sticks and ones blocks to show it.'},
+ {n:T_COMM,ch:2,tip:'Swapping the numbers in an addition gives the same answer, like 7 + 3 and 3 + 7. Try it with real objects such as pencils.'},
+ {n:T_SUB1,ch:3,tip:'Write the bigger number on top. Subtract the Ones first, then the Tens. A 1-digit number goes in the Ones place.'},
+ {n:T_SUB2,ch:3,tip:'If the top Ones digit is smaller, take 1 ten and change it into 10 ones. Add them to the Ones, then subtract. Practice with ten-sticks.'},
+ {n:T_REL,ch:3,tip:'Check a subtraction by adding. The answer plus the number taken away must equal the number you started with.'}
+];
+var TOPIC_CH={};TOPICS.forEach(function(t){TOPIC_CH[t.n]=t.ch});
+
+/* ---------- HELPERS ---------- */
+function get(d,n){return d.filter(function(x){return x.n===n})[0]}
+function val(d,n){return get(d,n).v}
+function maxOf(d){return d.reduce(function(a,b){return b.v>a.v?b:a})}
+function minOf(d){return d.reduce(function(a,b){return b.v<a.v?b:a})}
+function names(d){return d.map(function(x){return x.n})}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function seeded(seed){return function(){seed=(seed*9301+49297)%233280;return seed/233280}}
+function shuffle(a,rnd){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(rnd()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+
+function graph(title,sub,d,opts){
+  opts=opts||{};var rows=9,cw=64,ch=34,pad=6,lab=62;
+  var W=pad*2+d.length*cw,H=pad+rows*ch+lab,s='';
+  d.forEach(function(c,i){
+    var x=pad+i*cw,n=c.shown!=null?c.shown:c.v;
+    for(var r=0;r<rows;r++){s+='<rect class="gcell" x="'+x+'" y="'+(pad+r*ch)+'" width="'+cw+'" height="'+ch+'"/>'}
+    for(var k=0;k<n;k++){s+='<circle cx="'+(x+cw/2)+'" cy="'+(pad+(rows-1-k)*ch+ch/2)+'" r="13" fill="'+COLORS[i%5]+'"/>'}
+    s+='<text x="'+(x+cw/2)+'" y="'+(pad+rows*ch+26)+'" font-size="22" text-anchor="middle">'+c.e+'</text>';
+    s+='<text x="'+(x+cw/2)+'" y="'+(pad+rows*ch+48)+'" font-size="'+(c.n.length>9?10.5:12)+'" text-anchor="middle">'+esc(c.n)+'</text>';
+  });
+  return '<figure class="graph" style="max-width:'+(W+24)+'px"><figcaption>'+esc(title)+(sub?'<small>'+esc(sub)+'</small>':'')+'</figcaption>'+
+    '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(title+' '+(sub||'')+': '+d.map(function(c){return c.n+' '+(c.shown!=null?c.shown:c.v)}).join(', '))+'">'+s+'</svg></figure>';
+}
+function chartTable(title,d,blank,labelA,labelB){
+  var h='<div class="tbl-wrap"><table class="chart"><caption>'+esc(title)+'</caption><thead><tr><th>'+labelA+'</th>'+d.map(function(c){return '<th>'+c.e+'<br>'+esc(c.n)+'</th>'}).join('')+'</tr></thead><tbody><tr><th>'+labelB+'</th>'+
+   d.map(function(c,i){return '<td>'+(blank?'<input class="num fillin" id="f'+i+'" inputmode="numeric" maxlength="2" aria-label="Number of '+esc(c.n)+'">':c.v)+'</td>'}).join('')+'</tr></tbody></table></div>';
+  return h;
+}
+function scatter(d,seed){
+  var rnd=seeded(seed),all=[];
+  d.forEach(function(c){for(var i=0;i<c.v;i++)all.push(c.e)});
+  all=shuffle(all,rnd);
+  return '<div class="scatter" aria-label="A mix of pictures">'+all.map(function(e){return '<span style="transform:rotate('+Math.round(rnd()*40-20)+'deg) translateY('+Math.round(rnd()*10-5)+'px)">'+e+'</span>'}).join('')+'</div>';
+}
+function vert(a,b,op){
+  function dg(n){var t=Math.floor(n/10),o=n%10;return [t?t:'',o]}
+  var A=dg(a),B=dg(b);
+  return '<table class="vert" aria-label="'+a+' '+(op==='+'?'plus':'minus')+' '+b+'"><thead><tr><th></th><th>Tens</th><th>Ones</th></tr></thead><tbody><tr><td></td><td>'+A[0]+'</td><td>'+A[1]+'</td></tr><tr class="last"><td>'+op+'</td><td>'+B[0]+'</td><td>'+B[1]+'</td></tr></tbody></table>';
+}
+function diffTxt(a,b){return a.map(function(c,i){return c.n+': '+Math.max(c.v,b[i].v)+' − '+Math.min(c.v,b[i].v)+' = '+Math.abs(c.v-b[i].v)}).join(', ')}
+
+/* ---------- QUESTIONS ---------- */
+function build(){
+  var q=[];
+  var petV=function(){return graph('Favorite Pet','Number of students',PETS)};
+  var travV=function(){return chartTable('Favorite Means of Travel',TRAVEL,false,'Means of travel','Number of people')};
+  var f1=function(){return graph('Favorite Fruit','Class 1',FRUIT1)}, f2=function(){return graph('Favorite Fruit','Class 2',FRUIT2)};
+  var cmpF=function(){return f1()+f2()};
+  var s1=function(){return graph('Favorite Sport','Group 1',SPORT1)}, s2=function(){return graph('Favorite Sport','Group 2',SPORT2)};
+  var cmpS=function(){return s1()+s2()};
+  var teddy=get(TOYS,'Teddy');
+  var wrongFruit=FRUITPIC.map(function(c){return {n:c.n,e:c.e,v:c.v,shown:c.n==='Bananas'?c.v+1:c.v}});
+
+  q.push({t:T_MAKE,lv:1,type:'fill',p:'Look at the pictures. How many '+teddy.e+' teddy bears are there?',
+    vis:function(){return scatter(TOYS,7)},ans:[teddy.v],unit:'teddy bears',why:'Count each teddy bear one time. There are '+teddy.v+'.'});
+
+  q.push({t:T_MAKE,lv:2,type:'mc',p:'Sam put one circle for each picture. One column has a mistake. Which column is wrong?',
+    vis:function(){return scatter(FRUITPIC,21)+graph('Number of Fruits','Sam\'s graph',wrongFruit)},
+    opts:names(FRUITPIC),ans:'Bananas',why:'There are 3 bananas in the pictures, but the graph shows 4 circles.'});
+
+  q.push({t:T_MAKE,lv:2,type:'chart',p:'Count the circles in each column. Write the numbers in the chart.',
+    vis:function(){return petV()+chartTable('Favorite Pet',PETS,true,'Pet','Number')},ans:PETS.map(function(c){return c.v}),
+    ansTxt:PETS.map(function(c){return c.n+' '+c.v}).join(', '),why:'A chart shows the exact number. Count the circles in each column.'});
+
+  var mx=maxOf(PETS),mn=minOf(PETS);
+  q.push({t:T_RG,lv:1,type:'mc',p:'Look at the graph. Which pet is the most favorite?',vis:petV,opts:names(PETS),ans:mx.n,
+    why:'The longest column has the greatest number. '+mx.n+' has '+mx.v+' circles.'});
+  q.push({t:T_RG,lv:1,type:'mc',p:'Which pet is the least favorite?',vis:petV,opts:names(PETS),ans:mn.n,
+    why:'The shortest column has the least number. '+mn.n+' has only '+mn.v+' circles.'});
+  q.push({t:T_RG,lv:2,type:'mc',p:'Which two pets are liked by the same number of students?',vis:petV,
+    opts:['Dog and Fish','Cat and Dog','Rabbit and Bird','Fish and Bird'],ans:'Dog and Fish',
+    why:'Dog and Fish both have '+val(PETS,'Dog')+' circles, so they are equal.'});
+  q.push({t:T_RG,lv:1,type:'tf',p:'More students like rabbits than birds.',vis:petV,ans:true,
+    why:'Rabbit has '+val(PETS,'Rabbit')+' circles and Bird has '+val(PETS,'Bird')+'. '+val(PETS,'Rabbit')+' is more than '+val(PETS,'Bird')+'.'});
+  q.push({t:T_RG,lv:2,type:'fill',p:'How many more students like cats than birds?',vis:petV,ans:[val(PETS,'Cat')-val(PETS,'Bird')],unit:'students',
+    why:'"How many more" means subtract: '+val(PETS,'Cat')+' − '+val(PETS,'Bird')+' = '+(val(PETS,'Cat')-val(PETS,'Bird'))+'.'});
+
+  q.push({t:T_RC,lv:2,type:'fill',p:'How many people like the plane and the ship in all?',vis:travV,ans:[val(TRAVEL,'Plane')+val(TRAVEL,'Ship')],unit:'people',
+    why:'"In all" means add: '+val(TRAVEL,'Plane')+' + '+val(TRAVEL,'Ship')+' = '+(val(TRAVEL,'Plane')+val(TRAVEL,'Ship'))+'.'});
+  q.push({t:T_RC,lv:2,type:'fill',p:'How many more people like the train than the bus?',vis:travV,ans:[val(TRAVEL,'Train')-val(TRAVEL,'Bus')],unit:'people',
+    why:val(TRAVEL,'Train')+' − '+val(TRAVEL,'Bus')+' = '+(val(TRAVEL,'Train')-val(TRAVEL,'Bus'))+'.'});
+  var s3=val(TRAVEL,'Bus')+val(TRAVEL,'Ship')+val(TRAVEL,'Plane');
+  q.push({t:T_RC,lv:3,type:'tf',p:'The total number of people who like the bus, ship and plane is 15.',vis:travV,ans:s3===15,
+    why:val(TRAVEL,'Bus')+' + '+val(TRAVEL,'Ship')+' + '+val(TRAVEL,'Plane')+' = '+s3+', not 15.'});
+
+  q.push({t:T_OP,lv:1,type:'mc',p:'Which word tells us to subtract (−)?',opts:['sum','total','difference','all together'],ans:'difference',
+    why:'Difference means subtract. Sum, total and all together mean add (+).'});
+  q.push({t:T_OP,lv:2,type:'fill',p:'9 children like bikes. 6 children like kites. How many more children like bikes than kites?',ans:[3],unit:'children',
+    why:'9 − 6 = 3.'});
+
+  var mx1=maxOf(FRUIT1),mn2=minOf(FRUIT2);
+  q.push({t:T_CMP,lv:1,type:'mc',p:'Which fruit do the most students like in Class 1?',vis:cmpF,opts:names(FRUIT1),ans:mx1.n,
+    why:'In Class 1, '+mx1.n+' has the longest column ('+mx1.v+').'});
+  q.push({t:T_CMP,lv:1,type:'tf',p:'In Class 2, bananas are liked by the fewest students.',vis:cmpF,ans:mn2.n==='Bananas',
+    why:'Bananas has '+val(FRUIT2,'Bananas')+' circles in Class 2. That is the shortest column.'});
+  q.push({t:T_CMP,lv:2,type:'mc',p:'Which fruit is liked by the same number of students in both classes?',vis:cmpF,opts:names(FRUIT1),ans:'Oranges',
+    why:'Oranges has '+val(FRUIT1,'Oranges')+' in Class 1 and '+val(FRUIT2,'Oranges')+' in Class 2.'});
+  q.push({t:T_CMP,lv:1,type:'tf',p:'More students like apples in Class 2 than in Class 1.',vis:cmpF,ans:val(FRUIT2,'Apples')>val(FRUIT1,'Apples'),
+    why:'Class 2 has '+val(FRUIT2,'Apples')+' and Class 1 has '+val(FRUIT1,'Apples')+'.'});
+  var g=val(FRUIT1,'Grapes')+val(FRUIT2,'Grapes');
+  q.push({t:T_CMP,lv:2,type:'fill',p:'How many students like grapes in both classes together?',vis:cmpF,ans:[g],unit:'students',
+    why:val(FRUIT1,'Grapes')+' + '+val(FRUIT2,'Grapes')+' = '+g+'.'});
+  var ad=val(FRUIT2,'Apples')-val(FRUIT1,'Apples');
+  q.push({t:T_CMP,lv:2,type:'fill',p:'How many fewer students like apples in Class 1 than in Class 2?',vis:cmpF,ans:[ad],unit:'students',
+    why:val(FRUIT2,'Apples')+' − '+val(FRUIT1,'Apples')+' = '+ad+'.'});
+  q.push({t:T_CMP,lv:3,type:'mc',p:'Which fruit has the largest difference between Class 1 and Class 2?',vis:cmpF,opts:names(FRUIT1),ans:'Apples',
+    why:'Find each difference. '+diffTxt(FRUIT1,FRUIT2)+'. The largest is 5, for apples.'});
+
+  var b2=val(SPORT2,'Basketball')+val(SPORT2,'Tennis');
+  q.push({t:T_CMP,lv:2,type:'fill',p:'In Group 2, how many students like basketball and tennis together?',vis:cmpS,ans:[b2],unit:'students',
+    why:val(SPORT2,'Basketball')+' + '+val(SPORT2,'Tennis')+' = '+b2+'.'});
+  q.push({t:T_CMP,lv:3,type:'mc',p:'Which sport has the largest difference between Group 1 and Group 2?',vis:cmpS,opts:names(SPORT1).filter(function(n){return n!=='Handball'}),ans:'Tennis',
+    why:'Differences: '+diffTxt(SPORT1,SPORT2)+'. The largest is 6, for tennis.'});
+
+  /* ----- Chapter 2: Vertical addition ----- */
+  var a;
+  q.push({t:T_ADD1,lv:1,type:'fill',p:'Add using the vertical method.',vis:function(){return vert(23,14,'+')},ans:[23+14],
+    why:'Ones: 3 + 4 = 7. Tens: 2 + 1 = 3. So 23 + 14 = 37.'});
+  q.push({t:T_ADD1,lv:1,type:'fill',p:'Add. Remember to put the 1-digit number in the Ones place.',vis:function(){return vert(61,7,'+')},ans:[61+7],
+    why:'Ones: 1 + 7 = 8. Tens: 6 + 0 = 6. So 61 + 7 = 68.'});
+  q.push({t:T_ADD1,lv:2,type:'mc',p:'What is 27 + 30?',opts:['57','87','30','37'],ans:'57',
+    why:'Ones: 7 + 0 = 7. Tens: 2 + 3 = 5. So 27 + 30 = 57.'});
+  q.push({t:T_ADD1,lv:1,type:'tf',p:'In vertical addition, we add the Tens first and then the Ones.',ans:false,
+    why:'We always start with the Ones place, then add the Tens.'});
+  q.push({t:T_ADD1,lv:2,type:'fill',p:'A basket has 34 apples and 25 oranges. How many fruits are in the basket in all?',ans:[34+25],unit:'fruits',
+    why:'"In all" means add: 34 + 25 = 59 fruits.'});
+  q.push({t:T_ADD2,lv:2,type:'fill',p:'Add. The Ones make more than 10, so regroup.',vis:function(){return vert(38,27,'+')},ans:[38+27],
+    why:'Ones: 8 + 7 = 15. Write 5 and carry 1 ten. Tens: 3 + 2 + 1 = 6. So 38 + 27 = 65.'});
+  q.push({t:T_ADD2,lv:2,type:'mc',p:'Which problem needs regrouping?',opts:['41 + 25','36 + 28','52 + 16','73 + 5'],ans:'36 + 28',
+    why:'6 + 8 = 14 is more than 10, so we regroup. The Ones of the other sums are less than 10.'});
+  q.push({t:T_ADD2,lv:2,type:'fill',p:'Find 45 + 25.',ans:[70],
+    why:'Ones: 5 + 5 = 10. Write 0 and carry 1 ten. Tens: 4 + 2 + 1 = 7. So the answer is 70.'});
+  q.push({t:T_ADD2,lv:3,type:'fill',p:'47 boys and 36 girls ran in a race. How many children ran in the race?',ans:[47+36],unit:'children',
+    why:'Total means add: 47 + 36 = 83 children.'});
+  q.push({t:T_COMM,lv:1,type:'mc',p:'28 + 15 = 43. Which one gives the same answer without adding?',opts:['15 + 28','28 + 14','29 + 15','18 + 35'],ans:'15 + 28',
+    why:'Swap the two numbers 28 and 15. Then the answer stays 43.'});
+  q.push({t:T_COMM,lv:1,type:'fill',p:'Complete: 47 + 12 = 12 + ___',ans:[47],
+    why:'Swapping the numbers gives the same answer, so 47 + 12 = 12 + 47.'});
+  q.push({t:T_COMM,lv:2,type:'tf',p:'35 + 20 = 55, so 20 + 35 = 56.',ans:false,
+    why:'20 + 35 is also 55. Swapping the numbers does not change the answer.'});
+  q.push({t:T_COMM,lv:3,type:'fill',p:'Complete: 24 + ___ = 36 + 24',ans:[36],
+    why:'Swap the numbers: 36 + 24 = 24 + 36, so the missing number is 36.'});
+
+  /* ----- Chapter 3: Vertical subtraction ----- */
+  q.push({t:T_SUB1,lv:1,type:'fill',p:'Subtract using the vertical method.',vis:function(){return vert(78,35,'−')},ans:[78-35],
+    why:'Ones: 8 − 5 = 3. Tens: 7 − 3 = 4. So 78 − 35 = 43.'});
+  q.push({t:T_SUB1,lv:1,type:'fill',p:'Subtract. Put the 1-digit number in the Ones place.',vis:function(){return vert(59,4,'−')},ans:[59-4],
+    why:'Ones: 9 − 4 = 5. Tens: 5 − 0 = 5. So 59 − 4 = 55.'});
+  q.push({t:T_SUB1,lv:2,type:'mc',p:'What is 85 − 45?',opts:['40','4','30','130'],ans:'40',
+    why:'Ones: 5 − 5 = 0, so write 0. Tens: 8 − 4 = 4. The answer is 40.'});
+  q.push({t:T_SUB1,lv:2,type:'tf',p:'To solve 76 − 4, we write the 4 in the Tens place.',ans:false,
+    why:'A 1-digit number always goes in the Ones place.'});
+  q.push({t:T_SUB1,lv:2,type:'fill',p:'Sara has 68 stickers. She gives away 5 stickers. How many stickers are left?',ans:[68-5],unit:'stickers',
+    why:'"Left" means subtract: 68 − 5 = 63 stickers.'});
+  q.push({t:T_SUB1,lv:2,type:'fill',p:'Mona has 85 stickers. Ali has 62 stickers. How many more stickers does Mona have?',ans:[85-62],unit:'stickers',
+    why:'"How many more" means subtract: 85 − 62 = 23 stickers.'});
+  q.push({t:T_SUB2,lv:2,type:'fill',p:'Subtract. There are not enough Ones, so regroup 1 ten.',vis:function(){return vert(42,25,'−')},ans:[42-25],
+    why:'2 is smaller than 5. Regroup: 12 − 5 = 7. Tens: 3 − 2 = 1. So 42 − 25 = 17.'});
+  q.push({t:T_SUB2,lv:2,type:'mc',p:'Which problem needs regrouping?',opts:['57 − 23','64 − 38','89 − 5','76 − 41'],ans:'64 − 38',
+    why:'In 64 − 38, the Ones digit 4 is smaller than 8, so we regroup.'});
+  q.push({t:T_SUB2,lv:3,type:'fill',p:'Find 50 − 7.',vis:function(){return vert(50,7,'−')},ans:[43],
+    why:'0 is smaller than 7. Regroup: 10 − 7 = 3. Tens: 4 − 0 = 4. So 50 − 7 = 43.'});
+  q.push({t:T_SUB2,lv:3,type:'fill',p:'A bus has 62 people. 27 people get off. How many people are left on the bus?',ans:[62-27],unit:'people',
+    why:'Left means subtract: 62 − 27 = 35 people.'});
+  q.push({t:T_REL,lv:1,type:'mc',p:'64 − 13 = 51. Which addition checks the answer?',opts:['51 + 13','64 + 13','64 + 51','13 + 64'],ans:'51 + 13',
+    why:'Add the difference and the number taken away: 51 + 13 = 64. It matches the first number.'});
+  q.push({t:T_REL,lv:2,type:'fill',p:'Find the missing number: ___ − 12 = 47',ans:[47+12],
+    why:'To find the first number, add: 47 + 12 = 59.'});
+  q.push({t:T_REL,lv:2,type:'tf',p:'72 − 25 = 47. Check: 47 + 25 = 72, so the answer is correct.',ans:true,
+    why:'47 + 25 = 72 matches the first number, so the subtraction is right.'});
+  q.push({t:T_REL,lv:3,type:'fill',p:'Omar took 45 photos. He deleted some and kept 19 photos. How many photos did he delete?',ans:[45-19],unit:'photos',
+    why:'45 − 19 = 26. Check: 26 + 19 = 45.'});
+  /* 20 selected questions: 7 + 7 + 6, easy to challenging inside each chapter */
+  var SEL=[0,3,1,8,15,10,19, 22,31,26,27,28,30,34, 35,45,40,41,43,48];
+  return SEL.map(function(k){var x=q[k];if(x.t===T_RG||x.t===T_RC||x.t===T_OP)x.t=T_READ;return x});
+}
+
+/* ---------- APP ---------- */
+var app=document.getElementById('app'),Q=[],i=0,res=[],sel=null,checked=false,lastCh=0;
+var LETTERS='ABCDE';
+
+function start(ch){
+  lastCh=ch||0;var rnd=seeded(Date.now()%100000+3);
+  Q=build().filter(function(q){return !lastCh||TOPIC_CH[q.t]===lastCh}).map(function(q){if(q.type==='mc')q.opts=shuffle(q.opts,rnd);return q});
+  i=0;res=[];sel=null;checked=false;showQ();
+}
+function home(){
+  var bars=[['var(--c1)',34],['var(--c2)',58],['var(--c3)',46],['var(--c4)',76],['var(--c5)',24]].map(function(b,k){return '<i style="height:'+b[1]+'px;background:'+b[0]+';animation-delay:'+(k*.08)+'s"></i>'}).join('');
+  app.innerHTML='<section class="hero"><div class="demo" aria-hidden="true">'+bars+'</div><h1>Grade 2 Math Exam</h1>'+
+   '<p>Chapters 1, 2 and 3. Answer '+build().length+' questions. You get a star for each right answer!</p>'+
+   '<div class="chips"><span class="chip">1 · Graphs and Charts</span><span class="chip">2 · Vertical Addition</span><span class="chip">3 · Vertical Subtraction</span></div>'+
+   '<button class="btn go" id="start">Start the exam</button>'+
+   '</section>';
+  document.getElementById('start').onclick=function(){start(0)};
+}
+
+function showQ(){
+  var q=Q[i],pct=Math.round(i/Q.length*100),right=res.filter(function(r){return r.ok}).length;
+  var body='';
+  if(q.type==='mc'){
+    body='<div class="opts">'+q.opts.map(function(o,k){return '<button class="opt" data-v="'+esc(o)+'" aria-pressed="false"><span class="k">'+LETTERS[k]+'</span><span>'+esc(o)+'</span></button>'}).join('')+'</div>';
+  }else if(q.type==='tf'){
+    body='<div class="opts tf"><button class="opt" data-v="true" aria-pressed="false"><span class="k">✓</span><span>True</span></button><button class="opt" data-v="false" aria-pressed="false"><span class="k">✗</span><span>False</span></button></div>';
+  }else if(q.type==='fill'){
+    body='<div class="fillrow"><span class="unit">Answer:</span><input class="num fillin" id="f0" inputmode="numeric" maxlength="2" aria-label="Your answer"><span class="unit">'+esc(q.unit||'')+'</span></div>';
+  }
+  app.innerHTML='<div class="top"><div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="'+Q.length+'" aria-valuenow="'+i+'"><b style="width:'+pct+'%"></b></div><div class="pill">★ '+right+'</div></div>'+
+   '<section class="q"><div class="meta"><span>Question '+(i+1)+' of '+Q.length+' · <span class="tag">'+q.t+'</span></span><span class="stars-lv" title="Difficulty" aria-label="Level '+q.lv+' of 3">'+'★'.repeat(q.lv)+'<span style="color:var(--line)">'+'★'.repeat(3-q.lv)+'</span></span></div>'+
+   '<p class="prompt">'+esc(q.p)+'</p>'+(q.vis?'<div class="visual">'+q.vis()+'</div>':'')+
+   (q.type==='chart'?'':body)+'<div id="fb" aria-live="polite"></div><div class="act"><button class="btn" id="go" disabled>Check</button></div></section>';
+  sel=null;checked=false;
+  var go=document.getElementById('go');
+  go.onclick=function(){checked?next():check()};
+  Array.prototype.forEach.call(app.querySelectorAll('.opt'),function(b){b.onclick=function(){
+    if(checked)return;sel=b.getAttribute('data-v');
+    Array.prototype.forEach.call(app.querySelectorAll('.opt'),function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});go.disabled=false}});
+  var ins=app.querySelectorAll('.fillin');
+  Array.prototype.forEach.call(ins,function(inp,k){
+    inp.oninput=function(){inp.value=inp.value.replace(/\D/g,'');go.disabled=!Array.prototype.every.call(ins,function(x){return x.value!==''})};
+    inp.onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();if(!go.disabled)go.click()}else if(e.key!=='Backspace'&&inp.value.length>=2&&q.type!=='chart'){}};
+  });
+  if(q.type==='fill'&&ins[0])ins[0].focus({preventScroll:true});
+}
+
+function fmt(q){
+  if(q.type==='tf')return q.ans?'True':'False';
+  if(q.type==='fill')return q.ans[0]+(q.unit?' '+q.unit:'');
+  if(q.type==='chart')return q.ansTxt;
+  return q.ans;
+}
+function check(){
+  var q=Q[i],ok=false,given='';
+  if(q.type==='mc'){ok=sel===q.ans;given=sel;
+    Array.prototype.forEach.call(app.querySelectorAll('.opt'),function(b){var v=b.getAttribute('data-v');b.disabled=true;
+      if(v===q.ans)b.classList.add('right');else if(v===sel)b.classList.add('wrong')})}
+  else if(q.type==='tf'){var pick=sel==='true';ok=pick===q.ans;given=pick?'True':'False';
+    Array.prototype.forEach.call(app.querySelectorAll('.opt'),function(b){var v=b.getAttribute('data-v')==='true';b.disabled=true;
+      if(v===q.ans)b.classList.add('right');else if(b.getAttribute('data-v')===sel)b.classList.add('wrong')})}
+  else{
+    var ins=app.querySelectorAll('.fillin');ok=true;var g=[];
+    Array.prototype.forEach.call(ins,function(inp,k){var v=parseInt(inp.value,10);g.push(v);inp.disabled=true;
+      if(v===q.ans[k])inp.classList.add('right');else{ok=false;inp.classList.add('wrong')}});
+    given=q.type==='chart'?q.vis&&PETS.map(function(c,k){return c.n+' '+g[k]}).join(', '):String(g[0]);
+  }
+  checked=true;res.push({ok:ok,given:given,q:q});
+  var good=['Great job!','Super!','You got it!','Awesome!','Well done!'][i%5];
+  document.getElementById('fb').innerHTML=ok?
+    '<div class="fb ok"><h3>'+good+'</h3><p>'+esc(q.why)+'</p></div>':
+    '<div class="fb no"><h3>Not quite.</h3><p>Correct answer: <b>'+esc(fmt(q))+'</b></p><p>'+esc(q.why)+'</p></div>';
+  var go=document.getElementById('go');go.disabled=false;go.className='btn go';go.textContent=i===Q.length-1?'See my results':'Next';
+  go.focus({preventScroll:true});
+  document.getElementById('fb').scrollIntoView({block:'nearest',behavior:'smooth'});
+}
+function next(){
+  if(i<Q.length-1){i++;showQ();window.scrollTo(0,0)}else summary();
+}
+
+var AR={};
+AR[T_MAKE]={n:'عمل الرسوم البيانية',tip:'تدربوا على عمل رسم بياني: ضعوا دايرة واحدة لكل صورة، وبعدين عدّوا كل عمود. اتأكدوا إن عدد الدواير زي عدد الصور.'};
+AR[T_READ]={n:'قراءة الرسوم البيانية والجداول',tip:'العمود الأطول هو الأكتر، والأقصر هو الأقل. الجدول بيدينا الأرقام بالظبط: اجمعوا لما السؤال يقول «في المجموع» واطرحوا لما يقول «كام زيادة». خلّوا طفلكم يقرأ رسم بياني بصوت عالي ويجاوب 3 أسئلة عنه.'};
+AR[T_CMP]={n:'المقارنة بين رسمين بيانيين',tip:'بصّوا على الرسمين مع بعض، عنصر عنصر. اكتبوا الرقمين، وبعدين اجمعوا لو عايزين المجموع أو اطرحوا لو عايزين الفرق.'};
+AR[T_ADD1]={n:'جمع الأعداد المكوّنة من رقمين',tip:'اكتبوا الآحاد تحت الآحاد والعشرات تحت العشرات. اجمعوا الآحاد الأول وبعدين العشرات. والرقم المكوّن من رقم واحد مكانه في خانة الآحاد.'};
+AR[T_ADD2]={n:'الجمع بإعادة التجميع',tip:'لما الآحاد يبقوا 10 أو أكتر، سيبوا الآحاد الزيادة في خانتها واحملوا عشرة واحدة لخانة العشرات. استخدموا عصيّان العشرات ومكعبات الآحاد عشان تشوفوها.'};
+AR[T_COMM]={n:'تبديل ترتيب الأعداد في الجمع',tip:'لو بدّلنا مكان العددين في الجمع، الناتج بيفضل زي ما هو، زي 7 + 3 و 3 + 7. جرّبوها بحاجات حقيقية زي الأقلام.'};
+AR[T_SUB1]={n:'طرح الأعداد المكوّنة من رقمين',tip:'اكتبوا العدد الأكبر فوق. اطرحوا الآحاد الأول وبعدين العشرات. والرقم المكوّن من رقم واحد مكانه في خانة الآحاد.'};
+AR[T_SUB2]={n:'الطرح بإعادة التجميع',tip:'لو رقم الآحاد اللي فوق أصغر، خدوا عشرة واحدة وحوّلوها لـ 10 آحاد. ضيفوها على الآحاد وبعدين اطرحوا. تدرّبوا بعصيّان العشرات.'};
+AR[T_REL]={n:'التأكد من الطرح بالجمع',tip:'اتأكدوا من الطرح بالجمع: ناتج الطرح + العدد اللي اتطرح لازم يساوي العدد اللي بدأنا بيه.'};
+
+function summary(){
+  var tot=Q.length,sc=res.filter(function(r){return r.ok}).length,pc=Math.round(sc/tot*100);
+  var st=pc>=90?3:pc>=70?2:pc>=40?1:0;
+  var msg=pc>=90?'Amazing! You are a math star!':pc>=70?'Great work! Almost perfect.':pc>=40?'Good try! Look at the wrong answers and try again.':'Keep practicing. You can do it!';
+  var by={};res.forEach(function(r,k){var t=r.q.t;by[t]=by[t]||{a:0,b:0,miss:[]};by[t].b++;if(r.ok)by[t].a++;else by[t].miss.push(k+1)});
+  var used=TOPICS.filter(function(t){return by[t.n]});
+  var tp=used.map(function(t,k){var x=by[t.n],p=Math.round(x.a/x.b*100);
+    return '<div class="topic"><span>'+esc(t.n)+'</span><b>'+x.a+' / '+x.b+'</b><div class="tb"><b style="width:'+p+'%;background:'+COLORS[k%5]+'"></b></div></div>'}).join('');
+  var rv=res.map(function(r,k){return '<div class="rev"><span class="n '+(r.ok?'ok':'no')+'">'+(k+1)+'</span><div><p>'+esc(r.q.p)+'</p><p class="ans">Your answer: <b>'+esc(r.given)+'</b> · Correct: <b>'+esc(fmt(r.q))+'</b></p></div></div>'}).join('');
+  /* parent report */
+  var strong=used.filter(function(t){return by[t.n].b-by[t.n].a===0}),watch=used.filter(function(t){return by[t.n].b-by[t.n].a===1}),weak=used.filter(function(t){return by[t.n].b-by[t.n].a>=2});
+  var chap={};[1,2,3].forEach(function(c){var x=0,y=0;res.forEach(function(r){if(TOPIC_CH[r.q.t]===c){y++;if(r.ok)x++}});if(y)chap[c]=[x,y]});
+  var L={
+   en:{dir:'ltr',lang:'en',title:'Parent report',total:function(){return 'Total score: '+sc+' out of '+tot+' ('+pc+'%)'},ch:'Chapter ',
+     overall:pc>=90?'Excellent work. Your child is ready for the next lessons.':pc>=70?'Good understanding. A little practice on the skills below will make it strong.':pc>=40?'Your child knows some skills well. Please revise the skills below together, a few minutes each day.':'These chapters need more practice. Start with the first skill below and go slowly.',
+     good:'Strengths',noGood:'No skill was fully correct this time. Every skill below can improve with a little practice.',
+     warn:'Skills to revise',noWarn:'No skill had more than one missed question. Nothing needs urgent revision.',
+     missMany:'Missed questions: ',missOne:'Missed question: ',
+     watch:'Keep an eye on',watchIntro:'One missed question is not enough to say there is a problem. Try 2 or 3 more practice problems on each skill below.',noWatch:'Nothing to watch.',
+     note:'This exam has only '+tot+' questions, so a single missed question may be a slip. Use this report as a guide, not a final judgment.',sep:', ',
+     name:function(t){return t.n},tip:function(t){return t.tip}},
+   ar:{dir:'rtl',lang:'ar-EG',title:'تقرير ولي الأمر',total:function(){return 'الدرجة الكلية: '+sc+' من '+tot+' (<span dir="ltr">'+pc+'%</span>)'},ch:'الباب ',
+     overall:pc>=90?'أداء ممتاز! طفلكم جاهز للدروس الجاية.':pc>=70?'فهم كويس. شوية تدريب على المهارات اللي تحت هيخلّوه ممتاز.':pc>=40?'طفلكم عارف بعض المهارات كويس. راجعوا المهارات اللي تحت سوا، كام دقيقة كل يوم.':'الأبواب دي محتاجة تدريب أكتر. ابدأوا بأول مهارة تحت وامشوا واحدة واحدة.',
+     good:'نقاط القوة',noGood:'مفيش مهارة كانت كلها صح المرة دي. كل المهارات اللي تحت هتتحسن بشوية تدريب.',
+     warn:'مهارات محتاجة مراجعة',noWarn:'مفيش مهارة فيها أكتر من إجابة غلط. مفيش حاجة محتاجة مراجعة عاجلة.',
+     missMany:'الأسئلة الغلط: ',missOne:'السؤال الغلط: ',
+     watch:'خلّوا بالكم',watchIntro:'إجابة غلط واحدة مش كفاية نقول إن فيه مشكلة. جرّبوا 2 أو 3 تمارين كمان على كل مهارة تحت.',noWatch:'مفيش حاجة تقلق.',
+     note:'الامتحان فيه '+tot+' سؤال بس، فممكن تكون إجابة غلط واحدة مجرد سهو. التقرير ده للاسترشاد مش حكم نهائي.',sep:'، ',
+     name:function(t){return AR[t.n].n},tip:function(t){return AR[t.n].tip}}
+  };
+  function rep(g){
+    var l=L[g],sc2=function(x){return '<span dir="ltr">'+x.a+' / '+x.b+'</span>'};
+    var chips=Object.keys(chap).map(function(c){return '<span class="chip">'+l.ch+c+': <b dir="ltr">'+chap[c][0]+' / '+chap[c][1]+'</b></span>'}).join('');
+    var card=function(t,mild){var x=by[t.n];return '<div class="adv'+(mild?' mild':'')+'"><h4>'+esc(l.name(t))+' '+sc2(x)+'</h4><p class="soft">'+l.ch+t.ch+' · '+(x.miss.length>1?l.missMany:l.missOne)+x.miss.join(l.sep)+'</p><p>'+esc(l.tip(t))+'</p></div>'};
+    return '<div id="rep-'+g+'" dir="'+l.dir+'" lang="'+l.lang+'" class="rep'+(g==='ar'?' ar':'')+'"'+(g==='ar'?'':' hidden')+'>'+
+      '<h3>'+l.title+'</h3><p class="big"><b>'+l.total()+'</b></p><div class="chips left">'+chips+'</div><p class="soft">'+l.overall+'</p>'+
+      '<h4 class="good">'+l.good+'</h4>'+(strong.length?'<ul class="plist">'+strong.map(function(t){return '<li><b>'+esc(l.name(t))+'</b> '+sc2(by[t.n])+'</li>'}).join('')+'</ul>':'<p class="soft">'+l.noGood+'</p>')+
+      '<h4 class="warn">'+l.warn+'</h4>'+(weak.length?weak.map(function(t){return card(t,false)}).join(''):'<p class="soft">'+l.noWarn+'</p>')+
+      '<h4 class="watch">'+l.watch+'</h4>'+(watch.length?'<p class="soft">'+l.watchIntro+'</p>'+watch.map(function(t){return card(t,true)}).join(''):'<p class="soft">'+l.noWatch+'</p>')+
+      '<p class="soft note">'+l.note+'</p></div>';
+  }
+  app.innerHTML='<section class="hero"><h2>Your result</h2><div class="stars" aria-label="'+st+' out of 3 stars">'+'★'.repeat(st)+'<span class="off">'+'★'.repeat(3-st)+'</span></div>'+
+    '<div class="score">'+sc+' / '+tot+'</div><p><b>'+pc+'%</b> correct. '+msg+'</p><button class="btn go" id="again">Try again</button></section>'+
+    '<section class="panel parent"><div class="langs" role="group" aria-label="Report language"><button class="lang" id="lang-ar" aria-pressed="true">🇪🇬 التقرير بالعربي</button><button class="lang" id="lang-en" aria-pressed="false">🇬🇧 View Report in English</button></div>'+rep('ar')+rep('en')+'</section>'+
+    '<section class="panel"><h3>How you did in each skill</h3>'+tp+'</section>'+
+    '<section class="panel"><h3>All questions and answers</h3>'+rv+'</section>';
+  document.getElementById('again').onclick=function(){start(lastCh);window.scrollTo(0,0)};
+  ['ar','en'].forEach(function(g){document.getElementById('lang-'+g).onclick=function(){
+    ['ar','en'].forEach(function(h){document.getElementById('rep-'+h).hidden=h!==g;document.getElementById('lang-'+h).setAttribute('aria-pressed',h===g?'true':'false')})}});
+  window.scrollTo(0,0);
+}
+home();
+</script>
+
+</body></html>
